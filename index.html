@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!--About Project-->
+  <title>Games</title>
+  <meta name="description" content="[Descrição-do-projeto]" />
+  <meta name="author" content="[Seu-Nome]" />
+  <meta name="keywords" content="[palavras-chave, separadas, por, vírgula]" />
+  <meta name="robots" content="index, follow" />
+
+  <!--Theme-->
+  <meta name="theme-color" content="#fff" />
+
+  <!--Content Security Policy (CSP)-->
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self';script-src 'self';style-src 'self' 'unsafe-inline';img-src 'self' data: blob:;font-src 'self' data:;connect-src 'self' https: ws: wss:;object-src 'none';base-uri 'self';form-action 'self';frame-ancestors 'none';upgrade-insecure-requests;" />
+  <!--Referrer Policy-->
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <!-- Permissions Policy-->
+  <meta http-equiv="Permissions-Policy"
+    content="camera=(),microphone=(),geolocation=(),payment=(),usb=(),accelerometer=(),gyroscope=(),magnetometer=()" />
+  <!-- HSTS (somente se usar HTTPS, configurar no servidor) -->
+  <!-- <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains"> -->
+
+  <!--Favicon-->
+  <link rel="icon" type="image/x-icon" href="src/assets/icons/favicon.ico" />
+  <!--Aurora CSS-->
+  <link rel="stylesheet" href="framework/aurora/reset.css" />
+  <link rel="stylesheet" href="framework/aurora/themes.css" />
+  <link rel="stylesheet" href="framework/aurora/globals.css" />
+  <link rel="stylesheet" href="framework/aurora/classes.css" />
+  <!--Aurora JS-->
+  <script type="module" src="framework/aurora/aurora.js"></script>
+  <!--CSS-->
+  <link rel="stylesheet" href="src/styles/app.css" />
+  <!--Scripts-->
+  <script type="module" src="dist/main.js"></script>
+</head>
+
+<body data-theme="aurora-light">
+  <!--navbar-->
+  <header class="navbar">
+    <nav class="navbar__content" aria-label="Main navigation">
+      <a href="#" class="navbar__logo">Logo</a>
+      <ul class="navbar__menu">
+        <li><a href="#">Link1</a></li>
+        <li><a href="#">Link2</a></li>
+        <li><a href="#">Link3</a></li>
+      </ul>
+      <select class="theme-selector">
+        <option value="aurora-light">Aurora Light</option>
+        <option value="aurora-dark">Aurora Dark</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+        <option value="light-teal">Light Teal</option>
+        <option value="dark-teal">Dark Teal</option>
+        <option value="coffee">Coffee</option>
+        <option value="paper">Paper</option>
+        <option value="neumorphism">Neumorphism</option>
+        <option value="glass">Glass</option>
+        <option value="forest">Forest</option>
+        <option value="nord">Nord</option>
+        <option value="sakura">Sakura</option>
+        <option value="gold">Gold</option>
+      </select>
+      <button class="navbar__toggle">☰</button>
+    </nav>
+  </header>
+
+  <div class="panel-layout">
+    <!--form ------------------------------------------------------------------->
+    <aside id="game-form" class="game-form panel-left">
+      <button class="panel-toggle">❮</button>
+      <form>
+        <h2>Novo jogo</h2>
+        <!-- Name -->
+        <div class="field">
+          <input id="name" type="text" placeholder=" ">
+          <label for="name">Nome</label>
+        </div>
+        <!-- Status -->
+        <label for="status">Status</label>
+        <select id="status">
+          <option>Não Jogado</option>
+          <option>Para Jogar</option>
+          <option>Jogando</option>
+          <option>Para Continuar</option>
+          <option>Concluído</option>
+          <option>Dormindo</option>
+          <option>Abandonado</option>
+        </select>
+        <!-- Rating -->
+        <label for="rating">Classificação</label>
+        <select id="rating">
+          <option>⭐⭐⭐⭐⭐</option>
+          <option>⭐⭐⭐⭐☆</option>
+          <option>⭐⭐⭐☆☆</option>
+          <option>⭐⭐☆☆☆</option>
+          <option>⭐☆☆☆☆</option>
+        </select>
+        <!-- Store -->
+        <div class="field">
+          <input id="store" type="text" placeholder=" ">
+          <label for="store">Loja</label>
+        </div>
+        <!-- Account -->
+        <div class="field">
+          <input id="account" type="text" placeholder=" ">
+          <label for="account">Conta</label>
+        </div>
+        <!-- Genre -->
+        <div class="input-group">
+          <input id="genre-input" type="text" placeholder="Gênero">
+          <button id="genre-add" type="button">+</button>
+        </div>
+        <div id="genres" class="tags-list"></div>
+        <!-- Value -->
+        <div class="field">
+          <input id="value" type="number" placeholder=" ">
+          <label for="value">Valor</label>
+        </div>
+        <!-- image -->
+        <label for="image">Imagem</label>
+        <input id="image" type="file">
+        <!-- Notes -->
+        <label for="notes">Observações</label>
+        <textarea id="notes" rows="5"></textarea>
+        <footer>
+          <button type="submit">Salvar</button>
+        </footer>
+      </form>
+    </aside>
+
+    <!-- main-------------------------------------------------->
+    <main>
+      <h1>Minha Biblioteca</h1>
+      <!--cards games------------------------------------------------------------------------------->
+      <section id="games" class="row">
+        <!--card--------------------------------------------------------------------------------------->
+        <article class="card game-card">
+          <div class="game-card__cover">
+            <img class="game-card__image" src="/src/assets/images/image.png" alt="Hollow Knight">
+            <span class="badge position-tl">Concluído</span>
+            <div class="game-card__rating position-b">⭐⭐⭐⭐⭐</div>
+          </div>
+          <div class="game-card__content mt-sm">
+            <p class="game-card__title mb-sm">Hollow Knight</p>
+            <p class="game-card__meta badge bg-surface-2 text-small border">Steam</p>
+          </div>
+        </article>
+      </section>
+    </main>
+
+  </div>
+
+
+  <footer id="footer">
+  </footer>
+
+</body>
+
+</html>

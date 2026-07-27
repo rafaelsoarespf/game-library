@@ -1,0 +1,16 @@
+form {
+  display:flex;
+  flex-direction:column;
+  gap: 10px;
+}
+
+.game-card__cover{
+    position: relative;
+}
+
+.tags-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    margin-top: .75rem;
+}
