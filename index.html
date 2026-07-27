@@ -85,22 +85,22 @@
         <!-- Status -->
         <label for="status">Status</label>
         <select id="status">
-          <option>Não Jogado</option>
-          <option>Para Jogar</option>
-          <option>Jogando</option>
-          <option>Para Continuar</option>
-          <option>Concluído</option>
-          <option>Dormindo</option>
-          <option>Abandonado</option>
+          <option value="Não Jogado">Não Jogado</option>
+          <option value="Para Jogar">Para Jogar</option>
+          <option value="Jogando">Jogando</option>
+          <option value="Para Continuar">Para Continuar</option>
+          <option value="Concluído">Concluído</option>
+          <option value="Dormindo">Dormindo</option>
+          <option value="Abandonado">Abandonado</option>
         </select>
         <!-- Rating -->
         <label for="rating">Classificação</label>
         <select id="rating">
-          <option>⭐⭐⭐⭐⭐</option>
-          <option>⭐⭐⭐⭐☆</option>
-          <option>⭐⭐⭐☆☆</option>
-          <option>⭐⭐☆☆☆</option>
-          <option>⭐☆☆☆☆</option>
+          <option value="5">⭐⭐⭐⭐⭐</option>
+          <option value="4">⭐⭐⭐⭐</option>
+          <option value="3">⭐⭐⭐</option>
+          <option value="2">⭐⭐</option>
+          <option value="1">⭐</option>
         </select>
         <!-- Store -->
         <div class="field">
@@ -115,12 +115,14 @@
         <!-- Genre -->
         <div class="input-group">
           <input id="genre-input" type="text" placeholder="Gênero">
-          <button id="genre-add" type="button">+</button>
+          <button id="genre-button-add" type="button">+</button>
         </div>
-        <div id="genres" class="tags-list"></div>
+        <div id="genres" class="tags-list">
+          <span class="badge">Ação <button type="button" class="btn-none text-on-accent" aria-label="Remover gênero">×</button></span>
+        </div>
         <!-- Value -->
         <div class="field">
-          <input id="value" type="number" placeholder=" ">
+          <input id="value" type="number" min="0" step="0.01" placeholder=" ">
           <label for="value">Valor</label>
         </div>
         <!-- image -->
@@ -149,7 +151,7 @@
           </div>
           <div class="game-card__content mt-sm">
             <p class="game-card__title mb-sm">Hollow Knight</p>
-            <p class="game-card__meta badge bg-surface-2 text-small border">Steam</p>
+            <p class="game-card__meta badge-surface-2">Steam</p>
           </div>
         </article>
       </section>

@@ -1,21 +1,33 @@
 //Ex:
 //import { initNameFunction } from './components/name-component.js';
+// init functions ====================================================
+//document.addEventListener("DOMContentLoaded", init);
+//function init(): void {
 //initNameFunction();
-//==============================================================================
-//theme selector
-const selectors = document.querySelectorAll('.theme-selector');
-const savedTheme = localStorage.getItem('aurora-theme');
-if (savedTheme) {
-    document.body.setAttribute('data-theme', savedTheme);
-    selectors.forEach(selector => selector.value = savedTheme);
+//}
+import { GameCard } from "./components/GameCard.js";
+import { initGameForm } from "./components/GameForm.js";
+import { GameService } from "./services/GameService.js";
+// init functions ====================================================
+document.addEventListener("DOMContentLoaded", init);
+function init() {
+    initRenderGames();
+    initGameForm();
 }
-selectors.forEach(selector => {
-    selector.addEventListener('change', () => {
-        const theme = selector.value;
-        document.body.setAttribute('data-theme', theme);
-        localStorage.setItem('aurora-theme', theme);
-        selectors.forEach(s => s.value = theme);
+//=====================================================================
+/**Renderiza todos os jogos na tela.*/
+function initRenderGames() {
+    const container = document.getElementById("games");
+    if (!container) {
+        throw new Error('Elemento "#games" não encontrado.');
+    }
+    // Remove todos os cards atuais
+    container.replaceChildren();
+    // Obtém os jogos
+    const games = GameService.getAll();
+    // Cria e adiciona os cards
+    games.forEach(game => {
+        container.appendChild(GameCard.create(game));
     });
-});
-export {};
+}
 //# sourceMappingURL=main.js.map

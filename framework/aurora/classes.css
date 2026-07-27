@@ -256,7 +256,7 @@
 
 
 /*button -----------------------------------------------------*/
-.btn, .btn-ghost, .btn-outline, .btn-soft, .btn-glow, .btn-none{
+.btn, .btn-ghost, .btn-outline, .btn-soft, .btn-glow{
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -326,6 +326,10 @@
 }
 
 .btn-none{
+  padding:0;
+  min-width:0;
+  border-radius:0;
+  gap:0;
   background:transparent;
   border:none;
   box-shadow:none;
@@ -391,6 +395,8 @@
   display:inline-flex;
   align-items:center;
   justify-content:center;
+  align-self: start;
+  justify-self: start;
   padding:0.25rem 0.65rem;
   border-radius:10px;
   font:var(--font-text-sm);
@@ -400,6 +406,71 @@
   white-space:nowrap;
   gap:0.35rem;
 }
+
+.badge-accent {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  align-self: start;
+  justify-self: start;
+  padding:0.25rem 0.65rem;
+  border-radius:10px;
+  font:var(--font-text-sm);
+  background: var(--color-accent);
+  color:var(--color-on-accent);
+  border:1px solid var(--color-accent);
+  white-space:nowrap;
+  gap:0.35rem;
+}
+
+.badge-surface {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  align-self: start;
+  justify-self: start;
+  padding:0.25rem 0.65rem;
+  border-radius:10px;
+  font:var(--font-text-sm);
+  background: var(--color-surface-1);
+  color:var(--color-text);
+  border:1px solid var(--color-border);
+  white-space:nowrap;
+  gap:0.35rem;
+}
+
+.badge-surface-2 {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  align-self: start;
+  justify-self: start;
+  padding:0.25rem 0.65rem;
+  border-radius:10px;
+  font:var(--font-text-sm);
+  background: var(--color-surface-2);
+  color:var(--color-text);
+  border:1px solid var(--color-border);
+  white-space:nowrap;
+  gap:0.35rem;
+}
+
+.badge-ghost {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  align-self: start;
+  justify-self: start;
+  padding:0.25rem 0.65rem;
+  border-radius:10px;
+  font:var(--font-text-sm);
+  background: transparent;
+  color: var(--color-text);
+  border:1px solid var(--color-border);
+  white-space:nowrap;
+  gap:0.35rem;
+}
+
 
 /*field ------------------------------------------------------*/
 .field {
@@ -1233,7 +1304,7 @@ details.tree details > :not(summary):not(details) {
   min-width:0;
 }
 
-/* panel -----------------------------------------------------*/
+/* panel*/
 
 .panel-left,
 .panel-right{
@@ -1261,7 +1332,6 @@ details.tree details > :not(summary):not(details) {
 }
 
 /* closed*/
-
 .panel-left.closed,
 .panel-right.closed{
   width:0;
@@ -1275,9 +1345,7 @@ details.tree details > :not(summary):not(details) {
   display:none;
 }
 
-/*============================================================*/
-/* toggle ====================================================*/
-
+/* toggle */
 .panel-toggle{
   position:absolute;
   top:50%;
@@ -1298,40 +1366,28 @@ details.tree details > :not(summary):not(details) {
   user-select:none;
   line-height:1;
   box-shadow:none;
-
-  transition:
-    color .25s ease,
-    background-color .25s ease,
-    border-color .25s ease,
-    box-shadow .25s ease;
-
+  transition: color .25s ease,background-color .25s ease,border-color .25s ease, box-shadow .25s ease;
   z-index:100;
-
   isolation:isolate;
 }
 
 /* Left panel */
-
 .panel-left .panel-toggle{
   right:0;
   transform:translate(100%,-50%);
-
   border-left:none;
   border-radius:0 12px 12px 0;
 }
 
 /* Right panel */
-
 .panel-right .panel-toggle{
   left:0;
   transform:translate(-100%,-50%);
-
   border-right:none;
   border-radius:12px 0 0 12px;
 }
 
 /* States */
-
 .panel-toggle:hover{
   color:var(--color-accent);
   box-shadow:none;
@@ -1586,9 +1642,21 @@ details.tree details > :not(summary):not(details) {
   color: var(--color-text);
 }
 
+.text-sm {
+  font: var(--font-text-sm);
+  color: var(--color-text);
+}
+
 .text-accent{
-  font-weight: 600;
   color: var(--color-accent);
+}
+
+.text-on-accent{
+  color: var(--color-on-accent);
+}
+
+.text-bold{
+  font-weight:700;
 }
 
 .text-center { text-align: center;}
