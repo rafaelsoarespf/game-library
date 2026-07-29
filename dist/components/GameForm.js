@@ -1,23 +1,25 @@
-//initFunctionName ==============================================================
-//export function initFunctionName(): void{
-//
-//}
-// variables ==========================================================
+// variables ====================================================================
 const genres = [];
 //initGameForm ==================================================================
 export function initGameForm() {
-    initGenres();
+    initEvents();
 }
-//initGenres =====================================================================
-function initGenres() {
+//initEvents =====================================================================
+function initEvents() {
     const genreInput = document.querySelector("#genre-input");
     const genreButtonAdd = document.querySelector("#genre-button-add");
-    if (!(genreInput)) {
+    const form = document.querySelector("#game-form form");
+    if (!genreInput) {
         throw new Error('Elemento "#genre-input" não encontrado.');
     }
-    if (!(genreButtonAdd)) {
+    if (!genreButtonAdd) {
         throw new Error('Elemento "#genre-button-add" não encontrado.');
     }
+    if (!form) {
+        throw new Error('Elemento "form" não encontrado.');
+    }
+    //genre
+    //chama addGenre() se clicar no botão(genreButtonAdd) ou se precionar enter
     genreButtonAdd.addEventListener("click", addGenre);
     genreInput.addEventListener("keydown", event => {
         if (event.key === "Enter") {
@@ -25,6 +27,8 @@ function initGenres() {
             addGenre();
         }
     });
+    //submit
+    form.addEventListener("submit", onSubmit);
 }
 // addGenre ========================================================
 function addGenre() {
@@ -76,5 +80,56 @@ function removeGenre(genre) {
     }
     genres.splice(index, 1);
     renderGenres();
+}
+// getGame ========================================================================
+// Obtém os dados do formulário e cria um objeto Game.
+function getGame() {
+    const nameInput = document.querySelector("#name");
+    const statusSelect = document.querySelector("#status");
+    const ratingSelect = document.querySelector("#rating");
+    const storeInput = document.querySelector("#store");
+    const accountInput = document.querySelector("#account");
+    const valueInput = document.querySelector("#value");
+    const notesInput = document.querySelector("#notes");
+    if (!nameInput) {
+        throw new Error('Elemento "#name" não encontrado.');
+    }
+    if (!statusSelect) {
+        throw new Error('Elemento "#status" não encontrado.');
+    }
+    if (!ratingSelect) {
+        throw new Error('Elemento "#rating" não encontrado.');
+    }
+    if (!storeInput) {
+        throw new Error('Elemento "#store" não encontrado.');
+    }
+    if (!accountInput) {
+        throw new Error('Elemento "#account" não encontrado.');
+    }
+    if (!valueInput) {
+        throw new Error('Elemento "#value" não encontrado.');
+    }
+    if (!notesInput) {
+        throw new Error('Elemento "#notes" não encontrado.');
+    }
+    return {
+        id: 0,
+        name: nameInput.value.trim(),
+        image: "",
+        status: statusSelect.value,
+        rating: Number(ratingSelect.value),
+        platform: "",
+        store: storeInput.value.trim(),
+        account: accountInput.value.trim(),
+        genres: [...genres],
+        value: Number(valueInput.value),
+        notes: notesInput.value.trim()
+    };
+}
+// onSubmit ========================================================================
+function onSubmit(event) {
+    event.preventDefault();
+    const game = getGame();
+    console.log(game);
 }
 //# sourceMappingURL=GameForm.js.map

@@ -1,30 +1,31 @@
+import type { Game, GameStatus } from "../types/Game.js"
 
-//initFunctionName ==============================================================
-//export function initFunctionName(): void{
-//
-//}
-
-// variables ==========================================================
+// variables ====================================================================
 const genres: string[] = [];
 
 //initGameForm ==================================================================
 export function initGameForm(): void {
-  initGenres();
+  initEvents();
 }
 
-//initGenres =====================================================================
-function initGenres(): void {
+//initEvents =====================================================================
+function initEvents(): void {
   const genreInput = document.querySelector<HTMLInputElement>("#genre-input");
   const genreButtonAdd = document.querySelector<HTMLButtonElement>("#genre-button-add");
+  const form = document.querySelector<HTMLFormElement>("#game-form form");
 
-  if (!(genreInput)) {
+  if (!genreInput) {
     throw new Error('Elemento "#genre-input" não encontrado.');
   }
-
-  if (!(genreButtonAdd)) {
+  if (!genreButtonAdd) {
     throw new Error('Elemento "#genre-button-add" não encontrado.');
   }
+  if (!form) {
+    throw new Error('Elemento "form" não encontrado.');
+  }
 
+  //genre
+  //chama addGenre() se clicar no botão(genreButtonAdd) ou se precionar enter
   genreButtonAdd.addEventListener("click", addGenre);
 
   genreInput.addEventListener("keydown", event => {
@@ -33,6 +34,9 @@ function initGenres(): void {
       addGenre();
     }
   });
+
+  //submit
+  form.addEventListener("submit", onSubmit);
 }
 
 // addGenre ========================================================
@@ -94,4 +98,64 @@ function removeGenre(genre: string): void {
   if(index ===-1){ return;}
   genres.splice(index,1);
   renderGenres();
+}
+
+// getGame ========================================================================
+// Obtém os dados do formulário e cria um objeto Game.
+function getGame(): Game {
+  const nameInput = document.querySelector<HTMLInputElement>("#name");
+  const statusSelect = document.querySelector<HTMLSelectElement>("#status");
+  const ratingSelect = document.querySelector<HTMLSelectElement>("#rating");
+  const storeInput = document.querySelector<HTMLInputElement>("#store");
+  const accountInput = document.querySelector<HTMLInputElement>("#account");
+  const valueInput = document.querySelector<HTMLInputElement>("#value");
+  const notesInput = document.querySelector<HTMLTextAreaElement>("#notes");
+
+  if (!nameInput) {
+    throw new Error('Elemento "#name" não encontrado.');
+  }
+
+  if (!statusSelect) {
+    throw new Error('Elemento "#status" não encontrado.');
+  }
+
+  if (!ratingSelect) {
+    throw new Error('Elemento "#rating" não encontrado.');
+  }
+
+  if (!storeInput) {
+    throw new Error('Elemento "#store" não encontrado.');
+  }
+
+  if (!accountInput) {
+    throw new Error('Elemento "#account" não encontrado.');
+  }
+
+  if (!valueInput) {
+    throw new Error('Elemento "#value" não encontrado.');
+  }
+
+  if (!notesInput) {
+    throw new Error('Elemento "#notes" não encontrado.');
+  }
+
+  return {
+    id: 0,
+    name: nameInput.value.trim(),
+    image: "",
+    status: statusSelect.value as GameStatus,
+    rating: Number(ratingSelect.value),
+    store: storeInput.value.trim(),
+    account: accountInput.value.trim(),
+    genres: [...genres],
+    value: Number(valueInput.value),
+    notes: notesInput.value.trim()
+  };
+}
+
+// onSubmit ========================================================================
+function onSubmit(event: SubmitEvent): void{
+  event.preventDefault();
+  const game = getGame();
+  console.log(game)
 }

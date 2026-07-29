@@ -13,7 +13,6 @@ export interface Game {
     image: string;
     status: GameStatus;
     rating: number;
-    platform: string;
     store: string;
     account: string;
     genres: string[];
