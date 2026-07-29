@@ -24,7 +24,7 @@ function init(): void {
 
 //=====================================================================
 /**Renderiza todos os jogos na tela.*/
-function initRenderGames(): void {
+export function initRenderGames(): void {
     const container = document.getElementById("games");
     if (!container) {
         throw new Error('Elemento "#games" não encontrado.');

@@ -1,3 +1,5 @@
+import { GameService } from "../services/GameService.js";
+import { initRenderGames } from "../main.js";
 // variables ====================================================================
 const genres = [];
 //initGameForm ==================================================================
@@ -118,7 +120,6 @@ function getGame() {
         image: "",
         status: statusSelect.value,
         rating: Number(ratingSelect.value),
-        platform: "",
         store: storeInput.value.trim(),
         account: accountInput.value.trim(),
         genres: [...genres],
@@ -130,6 +131,7 @@ function getGame() {
 function onSubmit(event) {
     event.preventDefault();
     const game = getGame();
-    console.log(game);
+    GameService.add(game);
+    initRenderGames();
 }
 //# sourceMappingURL=GameForm.js.map

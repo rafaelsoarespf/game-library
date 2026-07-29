@@ -1,4 +1,7 @@
 import type { Game, GameStatus } from "../types/Game.js"
+import { GameService } from "../services/GameService.js"
+import { initRenderGames } from "../main.js";
+
 
 // variables ====================================================================
 const genres: string[] = [];
@@ -157,5 +160,6 @@ function getGame(): Game {
 function onSubmit(event: SubmitEvent): void{
   event.preventDefault();
   const game = getGame();
-  console.log(game)
+  GameService.add(game);
+  initRenderGames();
 }
