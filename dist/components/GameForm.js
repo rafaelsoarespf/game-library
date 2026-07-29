@@ -131,6 +131,10 @@ function getGame() {
 function onSubmit(event) {
     event.preventDefault();
     const game = getGame();
+    //validate
+    if (!validateGame(game)) {
+        return;
+    }
     GameService.add(game);
     initRenderGames();
     clearForm();
@@ -144,5 +148,13 @@ function clearForm() {
     form.reset();
     genres.length = 0;
     renderGenres();
+}
+// validateGame =======================================================
+function validateGame(game) {
+    if (!game.name) {
+        alert("Informe o nome do jogo.");
+        return false;
+    }
+    return true;
 }
 //# sourceMappingURL=GameForm.js.map

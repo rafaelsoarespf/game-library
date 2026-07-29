@@ -18,6 +18,7 @@ import { GameService } from "./services/GameService.js";
 document.addEventListener("DOMContentLoaded", init);
 
 function init(): void {
+    GameService.initGameService();
     initRenderGames();
     initGameForm();
 }

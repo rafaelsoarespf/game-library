@@ -1,4 +1,6 @@
 export class GameService {
+    // Variables ===================================================================
+    static STORAGE_KEY = "games";
     static games = [
         {
             id: 1,
@@ -13,14 +15,30 @@ export class GameService {
             notes: "Excelente jogo."
         }
     ];
+    // initGameService ==============================================================
+    static initGameService() {
+        this.load();
+    }
+    //Public methods ================================================================
     //getAll
     static getAll() {
         return this.games;
     }
-    //add
     static add(game) {
         game.id = this.games.length + 1;
         this.games.push(game);
+        this.save();
+    }
+    //Private methods ===============================================================
+    static save() {
+        localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.games));
+    }
+    static load() {
+        const data = localStorage.getItem(this.STORAGE_KEY);
+        if (!data) {
+            return;
+        }
+        this.games = JSON.parse(data);
     }
 }
 //# sourceMappingURL=GameService.js.map
