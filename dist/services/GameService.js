@@ -29,8 +29,17 @@ export class GameService {
         this.games.push(game);
         this.save();
     }
+    static remove(id) {
+        const index = this.games.findIndex(game => game.id === id);
+        if (index === -1) {
+            return;
+        }
+        this.games.splice(index, 1);
+        this.save();
+    }
     //Private methods ===============================================================
     static save() {
+        console.log("Salvando...", this.games);
         localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.games));
     }
     static load() {

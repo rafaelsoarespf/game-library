@@ -1,6 +1,6 @@
 import type { Game, GameStatus } from "../types/Game.js"
 import { GameService } from "../services/GameService.js"
-import { initRenderGames } from "../main.js";
+import { initGameCardList } from "./GameCardList.js";
 
 
 // variables ====================================================================
@@ -167,7 +167,7 @@ function onSubmit(event: SubmitEvent): void{
   }
 
   GameService.add(game);
-  initRenderGames();
+  initGameCardList();
   clearForm();
 }
 

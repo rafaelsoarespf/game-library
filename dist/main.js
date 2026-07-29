@@ -6,29 +6,14 @@
 //initNameFunction();
 //}
 import { GameCard } from "./components/GameCard.js";
+import { initGameCardList } from "./components/GameCardList.js";
 import { initGameForm } from "./components/GameForm.js";
 import { GameService } from "./services/GameService.js";
 // init functions ====================================================
 document.addEventListener("DOMContentLoaded", init);
 function init() {
     GameService.initGameService();
-    initRenderGames();
+    initGameCardList();
     initGameForm();
-}
-//=====================================================================
-/**Renderiza todos os jogos na tela.*/
-export function initRenderGames() {
-    const container = document.getElementById("games");
-    if (!container) {
-        throw new Error('Elemento "#games" não encontrado.');
-    }
-    // Remove todos os cards atuais
-    container.replaceChildren();
-    // Obtém os jogos
-    const games = GameService.getAll();
-    // Cria e adiciona os cards
-    games.forEach(game => {
-        container.appendChild(GameCard.create(game));
-    });
 }
 //# sourceMappingURL=main.js.map

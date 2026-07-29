@@ -34,6 +34,16 @@ export class GameService {
     this.games.push(game);
     this.save();
   }
+
+  static remove(id: number): void{
+    const index = this.games.findIndex(game => game.id === id);
+
+    if( index === -1){
+      return;
+    }
+    this.games.splice(index,1);
+    this.save();
+  }
   
   //Private methods ===============================================================
   private static save(): void {

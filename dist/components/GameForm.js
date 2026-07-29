@@ -1,5 +1,5 @@
 import { GameService } from "../services/GameService.js";
-import { initRenderGames } from "../main.js";
+import { initGameCardList } from "./GameCardList.js";
 // variables ====================================================================
 const genres = [];
 //initGameForm ==================================================================
@@ -136,7 +136,7 @@ function onSubmit(event) {
         return;
     }
     GameService.add(game);
-    initRenderGames();
+    initGameCardList();
     clearForm();
 }
 // clearForm =======================================================================
