@@ -2,7 +2,6 @@ import { GameService } from "../services/GameService.js";
 import { GameCard } from "./GameCard.js";
 //Initialization  ==============================================================
 export function initGameCardList() {
-    console.log(1);
     renderGames();
 }
 //=====================================================================

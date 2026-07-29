@@ -11,7 +11,10 @@ export class GameCard {
         image.alt = game.name;
         //title
         const title = document.createElement("h3");
-        title.textContent = game.name;
+        title.textContent = game.id.toString();
+        //id
+        const id = document.createElement("span");
+        id.textContent = game.id.toString();
         //delete button 
         const buttonRemove = document.createElement("button");
         buttonRemove.type = "button";

@@ -1,4 +1,4 @@
-import type { Game } from "../types/Game.js";
+import type { Game } from "../types/Game";
 import { GameService } from "../services/GameService.js";
 import { initGameCardList } from "./GameCardList.js";
 

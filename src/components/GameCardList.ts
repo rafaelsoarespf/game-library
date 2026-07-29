@@ -5,9 +5,7 @@ import { GameCard } from "./GameCard.js"
 
 //Initialization  ==============================================================
 export function initGameCardList(): void{
-  console.log(1);
   renderGames();
-  
 }
 
 //=====================================================================

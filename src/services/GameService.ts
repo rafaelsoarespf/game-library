@@ -30,7 +30,7 @@ export class GameService {
   }
 
   static add(game: Game): void {
-    game.id = this.games.length + 1;
+    game.id = this.getNextId();
     this.games.push(game);
     this.save();
   }
@@ -44,6 +44,18 @@ export class GameService {
     this.games.splice(index,1);
     this.save();
   }
+
+  static getNextId(): number {
+    const ids = this.games.map(game => game.id);
+
+    if (ids.length === 0) {
+        return 1;
+    }
+
+    const maxId = Math.max(...ids);
+
+    return maxId + 1;
+}
   
   //Private methods ===============================================================
   private static save(): void {
