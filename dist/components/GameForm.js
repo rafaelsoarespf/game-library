@@ -133,5 +133,16 @@ function onSubmit(event) {
     const game = getGame();
     GameService.add(game);
     initRenderGames();
+    clearForm();
+}
+// clearForm =======================================================================
+function clearForm() {
+    const form = document.querySelector("#game-form form");
+    if (!form) {
+        throw new Error('Elemento "form" não encontrado.');
+    }
+    form.reset();
+    genres.length = 0;
+    renderGenres();
 }
 //# sourceMappingURL=GameForm.js.map

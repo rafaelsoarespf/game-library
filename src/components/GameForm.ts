@@ -160,6 +160,37 @@ function getGame(): Game {
 function onSubmit(event: SubmitEvent): void{
   event.preventDefault();
   const game = getGame();
+
+  //validate
+  if (!validateGame(game)) {
+    return;
+  }
+
   GameService.add(game);
   initRenderGames();
+  clearForm();
+}
+
+// clearForm =======================================================================
+function clearForm(): void {
+  const form = document.querySelector<HTMLFormElement>("#game-form form");
+  
+  if (!form) {
+    throw new Error('Elemento "form" não encontrado.');
+  }
+
+  form.reset();
+  genres.length = 0;
+  renderGenres();
+}
+
+
+// validateGame =======================================================
+function validateGame(game: Game): boolean {
+  if (!game.name) {
+    alert("Informe o nome do jogo.");
+    return false;
+  }
+
+  return true;
 }

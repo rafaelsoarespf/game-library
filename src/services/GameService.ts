@@ -6,7 +6,7 @@ export class GameService {
     {
       id: 1,
       name: "Hollow Knight",
-      image: "src/assets/images/hollow-knight.webp",
+      image: "src/assets/images/hollow-knight.png",
       status: "Concluído",
       rating: 10,
       store: "Steam",
