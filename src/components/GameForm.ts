@@ -1,6 +1,6 @@
 import type { Game, GameStatus } from "../types/Game.js"
 import { GameService } from "../services/GameService.js"
-import { initGameCardList } from "./GameCardList.js";
+import { initGameCardList, getSelectedGameId, clearSelection } from "./GameCardList.js";
 
 
 // variables ====================================================================
@@ -157,22 +157,29 @@ function getGame(): Game {
 }
 
 // onSubmit ========================================================================
-function onSubmit(event: SubmitEvent): void{
-  event.preventDefault();
-  const game = getGame();
+function onSubmit(event: SubmitEvent): void {
+    event.preventDefault();
+    const game = getGame();
+    const selectedGameId = getSelectedGameId();
 
-  //validate
-  if (!validateGame(game)) {
-    return;
-  }
+    if (!validateGame(game)) {
+      return;
+    }
 
-  GameService.add(game);
-  initGameCardList();
-  clearForm();
+    if (selectedGameId !== null) {
+        game.id = selectedGameId;
+        GameService.update(game);
+    } else {
+        GameService.add(game);
+    }
+
+    initGameCardList();
+    clearSelection();
+    clearForm();
 }
 
 // clearForm =======================================================================
-function clearForm(): void {
+export function clearForm(): void {
   const form = document.querySelector<HTMLFormElement>("#game-form form");
   
   if (!form) {
@@ -193,4 +200,18 @@ function validateGame(game: Game): boolean {
   }
 
   return true;
+}
+
+// setFormFieldData =======================================================
+// fills the form fields with game data
+export function setFormFieldData(game: Game): void {
+  const nameInput = document.querySelector<HTMLInputElement>("#name");
+  const imageInput = document.querySelector<HTMLInputElement>("#image");
+
+    if (!nameInput || !imageInput) {
+        throw new Error("Campos do formulário não encontrados.");
+    }
+
+    nameInput.value = game.name;
+    imageInput.value = game.image;
 }

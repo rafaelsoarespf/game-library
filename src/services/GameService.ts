@@ -29,34 +29,52 @@ export class GameService {
     return this.games;
   }
 
+  //add
   static add(game: Game): void {
     game.id = this.getNextId();
     this.games.push(game);
     this.save();
   }
 
-  static remove(id: number): void{
+  //remove
+  static remove(id: number): void {
     const index = this.games.findIndex(game => game.id === id);
 
-    if( index === -1){
+    if (index === -1) {
       return;
     }
-    this.games.splice(index,1);
+    this.games.splice(index, 1);
     this.save();
   }
 
+  //getNextId
   static getNextId(): number {
     const ids = this.games.map(game => game.id);
 
     if (ids.length === 0) {
-        return 1;
+      return 1;
     }
 
     const maxId = Math.max(...ids);
 
     return maxId + 1;
-}
-  
+  }
+
+  //
+  static getById(id: number): Game | undefined {
+    return this.games.find(game => game.id === id);
+  }
+
+  //
+  static update(game: Game): void {
+    const index = this.games.findIndex(g => g.id === game.id);
+    if (index === -1) {
+      return;
+    }
+    this.games[index] = game;
+    this.save();
+  }
+
   //Private methods ===============================================================
   private static save(): void {
     console.log("Salvando...", this.games);

@@ -24,11 +24,13 @@ export class GameService {
     static getAll() {
         return this.games;
     }
+    //add
     static add(game) {
         game.id = this.getNextId();
         this.games.push(game);
         this.save();
     }
+    //remove
     static remove(id) {
         const index = this.games.findIndex(game => game.id === id);
         if (index === -1) {
@@ -37,6 +39,7 @@ export class GameService {
         this.games.splice(index, 1);
         this.save();
     }
+    //getNextId
     static getNextId() {
         const ids = this.games.map(game => game.id);
         if (ids.length === 0) {
@@ -44,6 +47,19 @@ export class GameService {
         }
         const maxId = Math.max(...ids);
         return maxId + 1;
+    }
+    //
+    static getById(id) {
+        return this.games.find(game => game.id === id);
+    }
+    //
+    static update(game) {
+        const index = this.games.findIndex(g => g.id === game.id);
+        if (index === -1) {
+            return;
+        }
+        this.games[index] = game;
+        this.save();
     }
     //Private methods ===============================================================
     static save() {

@@ -1,5 +1,5 @@
 import { GameService } from "../services/GameService.js";
-import { initGameCardList } from "./GameCardList.js";
+import { initGameCardList, getSelectedGameId, clearSelection } from "./GameCardList.js";
 // variables ====================================================================
 const genres = [];
 //initGameForm ==================================================================
@@ -131,16 +131,23 @@ function getGame() {
 function onSubmit(event) {
     event.preventDefault();
     const game = getGame();
-    //validate
+    const selectedGameId = getSelectedGameId();
     if (!validateGame(game)) {
         return;
     }
-    GameService.add(game);
+    if (selectedGameId !== null) {
+        game.id = selectedGameId;
+        GameService.update(game);
+    }
+    else {
+        GameService.add(game);
+    }
     initGameCardList();
+    clearSelection();
     clearForm();
 }
 // clearForm =======================================================================
-function clearForm() {
+export function clearForm() {
     const form = document.querySelector("#game-form form");
     if (!form) {
         throw new Error('Elemento "form" não encontrado.');
@@ -156,5 +163,16 @@ function validateGame(game) {
         return false;
     }
     return true;
+}
+// setFormFieldData =======================================================
+// fills the form fields with game data
+export function setFormFieldData(game) {
+    const nameInput = document.querySelector("#name");
+    const imageInput = document.querySelector("#image");
+    if (!nameInput || !imageInput) {
+        throw new Error("Campos do formulário não encontrados.");
+    }
+    nameInput.value = game.name;
+    imageInput.value = game.image;
 }
 //# sourceMappingURL=GameForm.js.map
